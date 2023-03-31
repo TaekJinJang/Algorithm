@@ -6,23 +6,20 @@ function solution(n, lost, reserve) {
     
     let num = realLost.length
     
+    // 정렬을 안해주면 [4,2],[3,5] 같은 케이스를 해결해주지 못함
     realLost.sort()
     realReserve.sort()
 
-    
-    
     for(let i=0;i<realLost.length;i++){
         let item = realLost[i]
         
         for(let j=0;j<realReserve.length;j++){
             let item2 = realReserve[j]
-
             if(Math.abs(item-item2) == 1) {
                 num --;
                 realReserve.splice(j,1)
                 break;
             }
-            
         }
 
     }
