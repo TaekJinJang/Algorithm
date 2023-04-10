@@ -8,13 +8,14 @@ function solution(board, moves) {
         
         for(let j=0;j<board.length;j++){
             const doll = Number(board[j].slice(box,box+1))
+            // doll 을 board[j][box] 로 바꿀 수 있음
             if(doll !== 0)  {
                 stack.push(doll)
                 board[j].splice(box,1,0)
-                // console.log(stack)
+                // board[j][box] = 0 으로 바꿀 수 있음
+                
                 if(stack[stack.length-1] === stack[stack.length-2]) {
                     stack.splice(stack.length-2,2)
-                    // console.log("애니팡 : ", stack)
                     answer +=2
                 }
                 
