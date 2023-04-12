@@ -2,7 +2,7 @@ function solution(brown, yellow) {
     var answer = [];
     let sum = brown + yellow
     
-    for(let i=3;i <= sum / i;i++){ // 최소 w,h = 3
+    for(let i=3;i <= sum / i ;i++){ // 최소 w,h = 3
         let w = sum / i
         let h = i
         if((w-2)*(h-2) === yellow) {
