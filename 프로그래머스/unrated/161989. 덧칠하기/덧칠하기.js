@@ -5,7 +5,7 @@ function solution(n, m, section) {
     section.forEach((e)=>{
         if(e>=idx) {
             idx = m + e
-            result +=1
+            result ++
         }
 
     })
