@@ -4,8 +4,6 @@ function solution(lottos, win_nums) {
     let zero = 0
     lottos.sort()
     win_nums.sort()
-    console.log(lottos)
-    console.log(win_nums)
     for(let i=0;i<lottos.length;i++){
         if(lottos[i] === 0) zero ++
         for (let j=0;j<lottos.length;j++){
