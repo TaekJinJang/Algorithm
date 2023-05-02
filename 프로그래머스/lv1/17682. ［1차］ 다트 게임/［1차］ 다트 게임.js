@@ -1,17 +1,17 @@
 function solution(dartResult) {
     // * 해당, 직전 점수 2배, 중첩가능
     // # 해당점수는 마이너스
-    var answer = 0;
-    var semiScore = [0, 0, 0]
-    var semiBonus = [1, 1, 1]
-    var semiOption = [1, 1, 1]
-    var roundScore = [0, 0, 0]
+    let answer = 0;
+    let semiScore = [0, 0, 0]
+    let semiBonus = [1, 1, 1]
+    let semiOption = [1, 1, 1]
+    let roundScore = [0, 0, 0]
 
     for (let i = 0; i < 3; i++) {
         // 숫자 거르기
         semiScore[i] = parseInt(dartResult)
         dartResult = dartResult.slice(String(semiScore[i]).length)
-
+        
         // 보너스 거르기
         if (dartResult[0] == 'S' || dartResult[0] == 'D' || dartResult[0] == 'T') {
             switch (dartResult[0]) {
