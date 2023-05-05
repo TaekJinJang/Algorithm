@@ -10,7 +10,5 @@ function solution(n, arr1, arr2) {
         let temp = x.split('')
         answer.push(temp.map((item)=>item =="0"?" ":"#").join(''))
     }
-    
-
     return answer;
 }
