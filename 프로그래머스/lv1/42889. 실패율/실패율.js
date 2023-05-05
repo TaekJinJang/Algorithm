@@ -18,17 +18,9 @@ function solution(N, stages) {
     }
     // 실패율 내림차순으로 정렬하고 실패율이 같다면 stage 오름차순으로 정렬
     arr.sort((a,b)=>{
-        if(a.ratio>b.ratio){
-            return -1;
-        }else if (a.ratio<b.ratio){
-            return 1;
-        }else{
-            if(a.idx>b.idx){
-                return 1;
-            }else{
-                return -1;
-            }
-        }
+        if(a.ratio>b.ratio) return -1;
+        if(a.ratio<b.ratio)return 1;
+        return a.idx - b.idx
     })
     return arr.map(ele=>ele.idx);
 }
