@@ -7,6 +7,7 @@ const DIRECTION = Object.freeze({
 
 const getMoveDir = (moveDir,dir) => {
     const [x,y] = moveDir
+
     switch(dir) {
         case "U" : {
             return [x+DIRECTION["U"][0],y+DIRECTION["U"][1]]
@@ -47,7 +48,7 @@ function solution(dirs) {
         let [nx,ny] = getMoveDir([x,y],dir)
         const coorX = [x,nx].sort((a,b)=>a-b);
         const coorY = [y,ny].sort((a,b)=>a-b);
-        console.log(nx,ny)
+
         if(Math.abs(nx) <= 5 && Math.abs(ny) <= 5) {
             if(getDuplicateDir([coorX,coorY],visited)) {
             answer++;
