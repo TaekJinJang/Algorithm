@@ -1,17 +1,16 @@
 function solution(s){
-    var answer = true;
-    let a=0
+
+    let stack = [];
     
-    /*let rt = s.split('').filter(v=>'('.includes(v))
-    let lt = s.split('').filter(v=>')'.includes(v))
+    if(s[0] === ")") return false;
+    [...s].forEach((str) => {
+        if(str === '(') stack.push(str);
+        if(str === ')') {
+            if(stack.length === 0) return false;
+            else stack.pop();
+        }
+    });
+    let answer = stack.length === 0 ? true : false
     
-    return rt.length === lt.length*/
-    
-    for(let i=0;i<s.length;i++){
-        if(s[i] =='(') a++; 
-        else a--; 
-        if(a < 0) return false
-    }
-    
-    return a==0 
+    return answer;
 }
