@@ -1,18 +1,13 @@
 function solution(ingredient) {
     const stack = [];
 
-    let answer = 0;
-    for (let i = 0; i < ingredient.length; i++) {
-        stack.push(ingredient[i]);
-        if (stack.length >= 4) {
-            if (stack.slice(-4).join('') === '1231') {
-                stack.pop();
-                stack.pop();
-                stack.pop();
-                stack.pop();
-                answer++;
-            }
-        }
-    }
+    const answer = ingredient.reduce((cnt, cur) => {
+        stack.push(cur);
+        if (stack.length < 4) return cnt;
+        if (stack.slice(-4).join('') !== '1231') return cnt;
+        stack.splice(-4);
+        return cnt + 1;
+    }, 0);
+
     return answer;
 }
