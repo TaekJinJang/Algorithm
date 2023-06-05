@@ -1,19 +1,27 @@
 function solution(players, callings) {
     const hash = new Map();
     
-    players.forEach((name, index) => {
-        hash.set(name, index);
+    players.forEach((player,i) => {
+        hash.set(player,i);
     })
     
-    callings.forEach(name => {
-        const curIdx = hash.get(name);
-        const front = players[curIdx - 1];
-
-        [players[curIdx], players[curIdx -1]] = [players[curIdx -1], players[curIdx]];
+    callings.forEach(player => {
+        const index = hash.get(player);
+        const frontPlayer = players[index-1];
         
-        hash.set(name, hash.get(name) - 1);
-        hash.set(front, hash.get(name) + 1);
+        [players[index],players[index-1]] = [players[index-1],players[index]];
+        
+        hash.set(player,hash.get(player) - 1);
+        hash.set(frontPlayer,hash.get(player) + 1);
+        
     })
-    
+
     return players;
+    
 }
+
+
+
+
+
+
