@@ -6,28 +6,37 @@ const keypad = {
 }
 
 const distance = ([x,y],[posX,posY]) => {
-    return Math.abs(posX-x) + Math.abs(posY-y)
+    return Math.abs(posX-x) + Math.abs(posY-y);
 }
 
-function solution(numbers, hand) {
-    var answer = '';
-    const distHand = (hand === 'left') ? 'L' : 'R'
-    let thumbs = {'L':keypad['*'],'R':keypad['#']}
 
-    const num = numbers.map((n)=>{
-        const pos = keypad[n]
-        if(pos[1]===0) {thumbs.L = pos; return 'L'}
-        if(pos[1]===2) {thumbs.R = pos; return 'R'}
-        
-        const Ldistance = distance(thumbs.L,pos)
-        const Rdistance = distance(thumbs.R,pos)
-        
-        if(Ldistance > Rdistance) { thumbs.R = pos; return 'R'}
-        if(Ldistance < Rdistance) { thumbs.L = pos; return 'L'}
-        
-        thumbs[distHand] = pos
+function solution(numbers, hand) {
+    let handLocation = {'L' : keypad['*'], 'R':keypad['#']}
+    const distHand = (hand === 'left') ? 'L' : 'R'
+    var answer = '';
+    
+    const handArray = numbers.map((num) => {
+        const pos = keypad[num];
+        if(pos[1] === 0) {
+            handLocation['L'] = pos
+            return 'L'
+        }
+        if(pos[1] === 2) {
+            handLocation['R'] = pos;
+            return 'R';
+        }
+        if(distance(handLocation['L'],pos) > distance(handLocation['R'],pos)) {
+            handLocation['R'] = pos;
+            return 'R'
+        }
+        if(distance(handLocation['L'],pos) < distance(handLocation['R'],pos)) {
+            handLocation['L'] = pos;
+            return 'L'
+        }
+        handLocation[distHand] = pos
         return distHand
         
     }).join('')
-    return num;
+    
+    return handArray;
 }
