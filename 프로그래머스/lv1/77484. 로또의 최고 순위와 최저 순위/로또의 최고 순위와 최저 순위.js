@@ -1,23 +1,16 @@
 function solution(lottos, win_nums) {
-    var answer = [];
-    let num = 7
-    let zero = 0
-    lottos.sort()
-    win_nums.sort()
-    for(let i=0;i<lottos.length;i++){
-        if(lottos[i] === 0) zero ++
-        for (let j=0;j<lottos.length;j++){
-            if(lottos[i] === win_nums[j]) {
-            num--
-            }
+    let answer = [];
+   let [match,zero] = [0,0]; 
+    const rank = [6,6,5,4,3,2,1]
+    lottos.forEach((lotto,i)=>{
+
+        if(win_nums.includes(lotto)) {
+            match ++;
         }
-    }
-    if( num == 7) num = 6
-    if(num == 0) num= 1
-    if(zero == 6) {
-        return [1,6]
-    }
-    answer.push(num-zero)
-    answer.push(num)
+        zero += (lotto === 0) ? 1 : 0;
+        
+    });
+
+    answer = [rank[match+zero],rank[match]]
     return answer;
 }
