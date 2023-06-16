@@ -1,23 +1,33 @@
 function solution(msg) {
-    var answer = [];
-    const temp = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    let afterNumber = 27;
+    let answer = [];
+    let alpha = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ']
+    let passIdx = 0;
+
     
-    let map = temp.split('').reduce((acc,v,i) => {
-        acc.set(v,i+1)
-        return acc
-    },new Map())
-    
-    const lastWord = msg.split('').reduce((acc,cur) => {
-        let nextWord = acc+cur;
-        if(!map.has(nextWord)) {
-            map.set(nextWord,afterNumber++);
-            answer.push(map.get(acc))
-            return cur
+    for(let i=0;i<msg.length;i++){
+        let distIdx = 0;
+        //console.log(i,passIdx)
+        if(i <= passIdx - 2) continue;
+
+        for(let j=i+1;j<=msg.length;j++){
+            const item = msg.substring(i,j)
+            if(alpha.includes(item)) {
+                distIdx = alpha.indexOf(item) + 1
+                if(j === msg.length) {
+                    answer.push(distIdx)
+                    passIdx = 9999
+                }
+            }
+            else {
+                answer.push(distIdx);
+                alpha.push(item)
+                passIdx = j
+
+                //console.log(item,alpha.length)
+                break;
+            }
         }
-        return nextWord
-    })
-    answer.push(map.get(lastWord))
+    }
 
     return answer;
 }
