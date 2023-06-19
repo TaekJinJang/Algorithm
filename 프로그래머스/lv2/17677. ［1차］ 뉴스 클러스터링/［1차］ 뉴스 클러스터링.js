@@ -37,10 +37,3 @@ function solution(str1, str2) {
     
     return answer;
 }
-
-/*
-str1,2 를 영문자만 남기도록 정규표현식을 쓰고
-for문으로 두개씩 묶어준다 (배열)
-그 뒤 서로 같은게 있는지 확인 ? 
-
-*/
