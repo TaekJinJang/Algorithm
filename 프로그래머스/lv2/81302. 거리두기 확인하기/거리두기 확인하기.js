@@ -4,14 +4,12 @@ const isDistance = (_place) => {
   let queue = [];
   for (let i = 0; i < 5; i++) {
     for (let j = 0; j < 5; j++) {
-      if (place[i][j] === 'P') {
-        queue.push([i, j]);
-      }
+      if (place[i][j] === 'P') queue.push([i, j]);      
     }
   }
 
-  let dx = [-1, 1, 0, 0];
-  let dy = [0, 0, 1, -1];
+  let dx = [1, 0, -1, 0];
+  let dy = [0, 1, 0, -1];
   while (queue.length) {
     const [x, y] = queue.shift();
 
