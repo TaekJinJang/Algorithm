@@ -1,18 +1,20 @@
 function solution(n, t, m, p) {
-    var answer = '';
-    let allStr=""
-    let cnt = 0
-    
+    let answer = '';
+    let str = '';
+
     for(let i=0;i<t*m;i++){
-        allStr+=i.toString(n)
+        const num = i.toString(n);
+        str+=(num)
     }
-    
-    while(answer.length < t) {
-        const str = allStr.substr(cnt,m)
-        answer += str[p-1]
-        cnt += m;
-        
+
+    str = str.toUpperCase();
+    let count = 0;
+    while(answer.length !== t) {
+        const s = str.substring(count,count+m);
+        answer += s[p-1]
+        count += m
     }
+
     
-    return answer.toUpperCase();
+    return answer
 }
