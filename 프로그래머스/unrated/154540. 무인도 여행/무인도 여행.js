@@ -1,36 +1,39 @@
-function solution(_maps) {
-    const maps = _maps.map(m=>m.split(''))
+function solution(maps) {
+    maps = maps.map(map=>map.split(''))
+    const [n,m] = [maps.length,maps[0].length]
+    const [dy, dx] = [[-1, 0, 1, 0], [0, 1, 0, -1]];
     
-    const dx = [1, 0, -1, 0];
-    const dy = [0, 1, 0, -1];
-    
-    const dfs = (x,y,num) => {
+    const dfs = (y,x,num) => {
         let sum = Number(num);
+        
         for(let i=0;i<4;i++){
-            const nx = x + dx[i];
             const ny = y + dy[i];
+            const nx = x + dx[i];
             
-            if(nx >= 0 && ny >= 0 && nx < maps.length && ny < maps[0].length) {
-                if(maps[nx][ny] !== 'X') {
-                    const next = maps[nx][ny];
-                    maps[nx][ny] = 'X';
-                    sum += dfs(nx,ny,next)
-                }
+            if(ny >= 0 && ny < n && nx >= 0 && nx < m) {
+                let next = maps[ny][nx];
+                if(next !== 'X') {
+                    maps[ny][nx] = 'X';
+                    sum += dfs(ny,nx,next);
+                } 
             }
         }
-        return sum;
+        return sum
     }
     
     const answer = [];
-    for(let i=0;i<maps.length;i++){
-        for(let j=0;j<maps[0].length;j++){
-            if(maps[i][j] !== 'X') {
-                const start = maps[i][j];
-                maps[i][j] = 'X';
-                answer.push(dfs(i,j,start))
+
+    for(let y = 0; y < n ; y++){
+        for(let x = 0; x < m ; x++){
+            
+            if(maps[y][x] !== 'X') {
+                const start = maps[y][x];
+                maps[y][x] = 'X';
+                answer.push(dfs(y,x,start))
             }
         }
     }
-    return answer.length ? answer.sort((a,b)=>a-b) : [-1];
+
+    return answer.length === 0 ? [-1] : answer.sort((a,b)=>a-b)
 }
 
